@@ -13,7 +13,7 @@ See LICENSE (GNU General Public License, version 3).
 
 This is the repository of the software framework for this project and contains software installation, setup, and running instructions.
 
-## **Hardware**
+## **Hardware & Operation**
 See this [Hackster.io project article](https://www.hackster.io/rcheeter/ticker-led-matrix-widgets-via-wifi-with-a-pocketbeagle-edd915) for the hardware design of this device and additional information about this project.
 
 ## **Software**
@@ -69,7 +69,7 @@ For more specific information about this setup process, view the [beagleboard.or
     4. `ping google.com` to check the internet connection.
     5. `^C`, "ctrl+C" to quit checking the internet connection.
 
-    **Option 1: USB WiFi adapter.**
+    **Option 3: USB WiFi adapter.**
     
     1. Ensure the WiFi adapter is connected to the PocketBeagle's USB1 pins as outlined in the hardware documentation, then run the following in the Cloud9 terminal. This should look similar to [this screenshot](https://github.com/rcheeter/ticker/blob/main/docs/software/wifi/connect_wifi.png).
     2. `lsusb` to interact with the USB WiFi adapter.
@@ -105,15 +105,29 @@ Restart the PocketBeagle before first run to ensure PRU changes have been set. E
 On first run, the SpotifyWidget will likely require an access token URL to be pasted into the Cloud9 terminal to run the application. See the SpotifyWidget section below for more information on how to do this.
 
 ### ***Widgets***
+See widget class files for additional documentation.
+
+#### Widget
+Generic Widget class to display a white screen and supporting functions.
+
+TODO: Add more here.
 
 #### Clock Widget
-Add here.
+ClockWidget class to display the current time and date.
+
+TODO: Add more here.
 
 #### Weather Widget
-Add here.
+WeatherWidget class to display the current temperature and humidity.
+
+TODO: Add more here.
 
 #### Spotify Widget
-Paste the access token URL from spotify_setup.py when prompted in the Cloud9 terminal. This URL can only be used once; a new one must be regenerated using spotify_setup.py if needed.
+SpotifyWidget class to display the currently playing track, pause/play, and skip to the next or previous track.
+
+Paste the access token URL from spotify_setup.py when prompted in the Cloud9 terminal. This URL can only be used once; a new one must be regenerated using spotify_setup.py if needed
+
+TODO: Add more here.
 
 ## **Acknowledgements**
 - ["64x32 LED Matrix Programming" article by Big Mess 'o Wires](https://www.bigmessowires.com/2018/05/24/64-x-32-led-matrix-programming/)
