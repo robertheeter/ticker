@@ -99,12 +99,12 @@ For more specific information about this setup process, view the [beagleboard.or
     9. Shut off and restart the PocketBeagle using the power button to set the cron changes and test the automatic boot.
 
 ### ***Running the Application***
+Before running the TICKER application, ensure that the desired widgets have been set up properly; see below for more information on setting up the widgets included in this project. In particular, on the first run, the SpotifyWidget will likely require an access token URL to be pasted into the Cloud9 terminal to run the application. See the SpotifyWidget section below for more information on how to do this.
+
 Restart the PocketBeagle before the first run to ensure the PRU changes have been set. Ensure the device is connected to a 5V/4A DC power source and the power switch has been set to "on". Run the following in the Cloud9 terminal:
     
 1. `cd /var/lib/cloud9/projects/ticker` to move to the `/ticker` directory.
 2. `sudo python3 ticker.py` to run `ticker.py`. The password for Debian is likely `temppwd`.
-                                        
-On the first run, the SpotifyWidget will likely require an access token URL to be pasted into the Cloud9 terminal to run the application. See the SpotifyWidget section below for more information on how to do this.
 
 ### ***Widgets***
 See the widget class Python files for additional documentation.
