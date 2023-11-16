@@ -107,7 +107,7 @@ Restart the PocketBeagle before the first run to ensure the PRU changes have bee
 2. `sudo python3 ticker.py` to run `ticker.py`. The password for Debian is likely `temppwd`.
 
 ### ***Widgets***
-See the widget class Python files in the [**ticker**](https://github.com/rcheeter/ticker/tree/main/ticker) folder in this repository for more detailed documentation.
+See the widget class Python files in the [**ticker**](https://github.com/rcheeter/ticker/tree/main/ticker) folder in this repository for more detailed documentation. All of the provided widgets rely on the ['Pillow'](https://pillow.readthedocs.io/en/stable/) library to create and display 64x32 pixel images to the LED matrix.
 
 #### [Widget](https://github.com/rcheeter/ticker/blob/main/ticker/widget.py)
 Generic Widget class to display a white screen and supporting functions. Contains some general LED matrix and graphics parameters, including the pixel dimensions of the matrix and fonts.
@@ -148,7 +148,7 @@ To set up this widget, a Spotify account is required and another computer (i.e.,
 - ["LEDscape" code via GitHub by Keith Hendrickson](https://github.com/KeithHenrickson/LEDscape)
 - ["PRU Cookbook" code via GitLab by BeagleBoard](https://git.beagleboard.org/beagleboard/pru-cookbook-code)
 - [Spotify Web API documentation](https://developer.spotify.com/documentation/web-api)
-- [Spotipy documentation](https://spotipy.readthedocs.io/en/2.22.1/)
+- [Spotipy documentation](https://spotipy.readthedocs.io)
 - [Adafruit CircuitPython AHTX0 library](https://github.com/adafruit/Adafruit_CircuitPython_AHTx0)
 - [Pillow documentation](https://pillow.readthedocs.io/en/stable/)
 - Professor Erik Welsh and his ENGI 301 Introduction to Practical Electrical Engineering course materials
