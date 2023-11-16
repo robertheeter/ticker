@@ -127,9 +127,9 @@ ClockWidget class to display the current time and date. Inherits Widget. Require
 WeatherWidget class to display the current temperature and humidity. Inherits Widget. Does not require an internet connection. Requires the [`adafruit_ahtx0`](https://github.com/adafruit/Adafruit_CircuitPython_AHTx0) library to use the I2C AHT10 temperature/humidity sensor. Updates once per minute. Does not accept any user input. Use the `units` parameter to specify the temperature units.
 
 #### [SpotifyWidget](https://github.com/rcheeter/ticker/blob/main/ticker/spotify_widget.py)
-SpotifyWidget class to display the currently playing track, pause/play, and skip to the next or previous track. Inherits Widget. Requires an internet connection to use the [`spotipy`](http://spotipy.readthedocs.io) Spotify API library. Updates continuously. Use the `interval` parameter to specify how smoothly the display text scrolls.
+SpotifyWidget class to display the currently playing track, pause/play, and skip to the next or previous track. Inherits Widget. Requires an internet connection to use the [`spotipy`](http://spotipy.readthedocs.io) Spotify API library. Updates continuously. Use the `interval` parameter to specify how smoothly the display text scrolls. Press the action button one time to pause/play, two times to skip to the next track, or three times to skip to the previous track.
 
-To set up this widget, a Spotify account and another computer (i.e., a Mac or Windows) are required). Perform the following:
+To set up this widget, a Spotify account and another computer (i.e., a Mac or Windows) are required. Perform the following:
 1. On the other computer (i.e., not on the PocketBeagle Cloud9), install Spotipy using the terminal: `pip install spotipy --upgrade`
 2. Download the [**spotify_setup.py**](https://github.com/rcheeter/ticker/blob/main/setup/spotify_setup.py) script in this repository under the **setup** folder.
 3. Create a [Spotify developer account](https://developer.spotify.com) and go to the Dashboard. This should look similar to [this screenshot](https://github.com/rcheeter/ticker/blob/main/docs/software/spotify/spotify_setup_1.png).
