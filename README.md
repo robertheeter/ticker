@@ -84,7 +84,7 @@ For more specific information about this setup process, view the [beagleboard.or
     11. `quit` to quit the interface.
     12. `ping google.com` to check the internet connection.
     13. `^C`, "ctrl+C" to quit checking the internet connection.
-    14. When the PocketBeagle (and by extension the WiFi adapter) are powered on, it will automatically attempt to connect to the same network. This process can be repeated to change networks.
+    14. When the PocketBeagle (and by extension the WiFi adapter) is powered on, it will automatically attempt to connect to the same network. This process can be repeated to change networks.
 
 4. To run the TICKER application on boot, perform the following in the Cloud9 terminal. **This should be done only after testing the software using the Cloud9 terminal (i.e., not on boot).** The automatic boot process takes roughly 90 seconds, which includes the time to start the PocketBeagle and automatically connect to the internet.
 
@@ -114,7 +114,7 @@ Generic Widget class to display a white screen and supporting functions. Contain
 
 Each widget inherits from this Widget class. Accordingly, each Widget must have the following functions:
 - `setup(self)`: sets up any required APIs and initializes some class variables.
-- `update(self, action_state)`: updates and returns a new screen image (as a PIL Image object); the `action_state` parameter is an integer in [0, 1, 2, 3] to indicate the number of times that the action button has been pressed (i.e., no press, single press, double press, triple press); this update function can include a set of conditions to handle this user input.
+- `update(self, action_state)`: updates and returns a new screen image (as a PIL Image object); the `action_state` parameter is an integer in [0, 1, 2, 3] to indicate the number of times that the action button (marked with "•"; see the hardware documentation) has been pressed (i.e., no press, single press, double press, triple press); this update function can include a set of conditions to handle this user input.
 
 Each Widget should also have the following properties:
 - `refresh_rate`: the refresh rate of the display (in Hz), implemented as a wait in `Widget.update()`.
@@ -129,8 +129,8 @@ WeatherWidget class to display the current temperature and humidity. Inherits Wi
 #### [SpotifyWidget](https://github.com/rcheeter/ticker/blob/main/ticker/spotify_widget.py)
 SpotifyWidget class to display the currently playing track, pause/play, and skip to the next or previous track. Inherits Widget. Requires an internet connection to use the [`spotipy`](http://spotipy.readthedocs.io) Spotify API library. Updates continuously. Use the `interval` parameter to specify how smoothly the display text scrolls.
 
-To set up this widget, a Spotify account is required and another computer (i.e., a Mac or Windows). Perform the following:
-1. On the other computer, install Spotipy using the terminal: `pip install spotipy --upgrade`
+To set up this widget, a Spotify account and another computer (i.e., a Mac or Windows) are required). Perform the following:
+1. On the other computer (i.e., not on the PocketBeagle Cloud9), install Spotipy using the terminal: `pip install spotipy --upgrade`
 2. Download the [**spotify_setup.py**](https://github.com/rcheeter/ticker/blob/main/setup/spotify_setup.py) script in this repository under the **setup** folder.
 3. Create a [Spotify developer account](https://developer.spotify.com) and go to the Dashboard. This should look similar to [this screenshot](https://github.com/rcheeter/ticker/blob/main/docs/software/spotify/spotify_setup_1.png).
 4. Create a new app with a name, description, and redirect URI (recommended to use `https://localhost:8888/callback`). This should look similar to [this screenshot](https://github.com/rcheeter/ticker/blob/main/docs/software/spotify/spotify_setup_2.png) and [this other screenshot](https://github.com/rcheeter/ticker/blob/main/docs/software/spotify/spotify_setup_3.png).
