@@ -3,6 +3,7 @@ ABOUT:
     
     WeatherWidget class to display the current temperature and humidity.
     Not intended to be run directly.
+    See documentation at https://github.com/rcheeter/ticker for setting up this widget.
     
 LICENSE:
     
