@@ -4,8 +4,11 @@ ABOUT:
     Generic Widget class to display a white screen and supporting functions.
     Not intended to be run directly.
     
-    Copyright 2023, ROBERT HEETER
-
+LICENSE:
+    
+    Copyright 2023, Robert Heeter.
+    See LICENSE (GNU General Public License, version 3).
+    
 """
 
 from PIL import Image, ImageDraw, ImageFont, ImageEnhance

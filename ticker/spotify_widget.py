@@ -3,9 +3,12 @@ ABOUT:
     
     SpotifyWidget class to display the currently playing track, pause/play, and skip to the next or previous track.
     Not intended to be run directly.
+        
+LICENSE:
     
-    Copyright 2023, ROBERT HEETER
-
+    Copyright 2023, Robert Heeter.
+    See LICENSE (GNU General Public License, version 3).
+    
 """
 
 from PIL import Image, ImageDraw
