@@ -1,5 +1,5 @@
 # **TICKER: LED matrix widgets via WiFi with a PocketBeagle**
-- By **Robert Heeter**.
+- By **[Robert Heeter](https://github.com/rcheeter)**.
 - Project completed 14 November 2023 for the ENGI 301 Introduction to Practical Electrical Engineering (Fall 2023) course with Professor Erik Welsh at Rice University.
 - Much of the prototyping for this device was done at the Oshman Engineering Design Kitchen at Rice University in Houston, Texas.
 
@@ -14,7 +14,7 @@ See LICENSE (GNU General Public License, version 3).
 This is the repository of the software framework for this project and contains software installation, setup, and running instructions.
 
 ## **Hardware & Operation**
-See this [Hackster.io project article](https://www.hackster.io/rcheeter/ticker-led-matrix-widgets-via-wifi-with-a-pocketbeagle-edd915) for the hardware design of this device and additional information about this project.
+See this [Hackster.io project article](https://www.hackster.io/rcheeter/ticker-led-matrix-widgets-via-wifi-with-a-pocketbeagle-edd915) for the hardware design and additional information about this project.
 
 ## **Software**
 ### ***PocketBeagle Setup***
@@ -24,7 +24,7 @@ For more specific information about this setup process, view the [beagleboard.or
 
 2. After downloading the Debian OS, the microSD card can be inserted into the PocketBeagle and it can be connected to a Mac or Windows computer via a micro USB cable. Navigate to 192.168.6.2 (Mac) or 192.168.7.2 (Windows) on a web browser like Google Chrome to open Cloud9, the IDE used in this project for interacting with the PocketBeagle. For troubleshooting this process, consult see [this article by Random Nerd Tutorials](https://randomnerdtutorials.com/cloud9-ide-on-the-beaglebone-black/) or [this article by Dummies](https://www.dummies.com/article/technology/computers/hardware/beaglebone/how-to-launch-the-cloud9-ide-on-your-beaglebone-144962/) for the BeagleBoneBlack (which also applies for the PocketBeagle).
 
-3. Open a new terminal and install the following packages and Python libraries for this project:
+3. Open a new terminal and install the following packages and Python libraries required for this project:
 
     - `sudo apt-get update`
     - `sudo apt-get install python-pip -y`
@@ -38,7 +38,7 @@ For more specific information about this setup process, view the [beagleboard.or
     - `sudo pip3 install --upgrade adafruit-circuitpython-ahtx0`
 
 ### ***Project Installation & Setup***
-1. Download the entire [**ticker**](https://github.com/rcheeter/ticker/tree/main/ticker) folder in this repository and drag it into a new folder named `projects` in the Cloud9 file manager as `/var/lib/cloud9/projects/ticker/...`. This folder contains all the scripts required to run the Ticker LED matrix and several starting widgets. This should appear similar to [this screenshot](https://github.com/rcheeter/ticker/blob/main/docs/software/file_organization.png), though will likely be missing the `.cache`, `__pycache__`, and `logs/cronlog` files/folders in the screenshot.
+1. Download the entire [**ticker**](https://github.com/rcheeter/ticker/tree/main/ticker) folder in this repository and drag it into a new folder named `projects` in the Cloud9 file manager as `/var/lib/cloud9/projects/ticker/...`. This folder contains all the scripts required to run the TICKER LED matrix and several starting widgets. This should appear similar to [this screenshot](https://github.com/rcheeter/ticker/blob/main/docs/software/file_organization.png), though it will likely be missing the `.cache`, `__pycache__`, and `logs/cronlog` files/folders in the screenshot.
 
 2. Change the programmable realtime unit (PRU) mode in the PocketBeagle from RPROC to UIO to run the LED matrix. This can be done via the Cloud9 terminal:
 
@@ -52,11 +52,11 @@ For more specific information about this setup process, view the [beagleboard.or
 
     This should look similar to [this screenshot](https://github.com/rcheeter/ticker/blob/main/docs/software/pru/modify_pru_1.png) and [this other screenshot](https://github.com/rcheeter/ticker/blob/main/docs/software/pru/modify_pru_2.png).
 
-3. Connect the PocketBeagle to the internet via the Cloud9 terminal using one of the following 3 options; the USB WiFi adapter should be used to allow the device to use the internet without a secondary computer, but the first two options can be used for testing.
+3. Connect the PocketBeagle to the internet via the Cloud9 terminal using one of the following 3 options; the USB WiFi adapter should be used to allow the device to use the internet without a secondary internet-connected computer, but the first two options can be used for testing.
     
     **Option 1: USB connection to a Mac computer.**
         
-    1. Ensure the Mac computer is connected to the PocketBeagle and that internet sharing is on in System Preferences > Sharing. There are numerous resources available on the internet to troubleshoot this process. Then perform the following in the Cloud9 terminal:
+    1. Ensure the Mac computer is connected to the PocketBeagle and that Internet Sharing is on in System Preferences > Sharing. There are numerous resources available on the internet to troubleshoot this process. Then perform the following in the Cloud9 terminal:
     2. `sudo dhclient usb1` to connect to the internet using the Mac computer. The password for debian is likely `temppwd`.
     3. `ping google.com` to check the internet connection.
     4. `^C`, "ctrl+C" to quit checking the internet connection.
@@ -84,8 +84,9 @@ For more specific information about this setup process, view the [beagleboard.or
     11. `quit` to quit the interface.
     12. `ping google.com` to check the internet connection.
     13. `^C`, "ctrl+C" to quit checking the internet connection.
+    14. When the PocketBeagle (and by extension the WiFi adapter) are powered on, it will automatically attempt to connect to the same network. This process can be repeated to change networks.
 
-4. To run the Ticker application on boot, perform the following in the Cloud9 terminal. This should be done only after testing the software using the Cloud9 terminal (i.e., not on boot).
+4. To run the TICKER application on boot, perform the following in the Cloud9 terminal. This should be done only after testing the software using the Cloud9 terminal (i.e., not on boot).
 
     1. `cd /var/lib/cloud9` to move to the `/cloud9` directory.
     2. `mkdir logs` to make a `logs` folder.
@@ -94,7 +95,7 @@ For more specific information about this setup process, view the [beagleboard.or
     5. `^X`, "ctrl+X" to exit the editor.
     6. `Y`, "Y" to save the modified buffer.
     7. "enter" to confirm the file name.
-    8. Shut off and restart the PocketBeagle using the power button to set the cron changes.
+    8. Shut off and restart the PocketBeagle using the power button to set the cron changes and test the automatic boot.
 
 ### ***Running the Application***
 Restart the PocketBeagle before the first run to ensure the PRU changes have been set. Ensure the device is connected to a 5V/4A DC power source and the power switch has been set to "on". Run the following in the Cloud9 terminal:
@@ -108,9 +109,11 @@ On the first run, the SpotifyWidget will likely require an access token URL to b
 See the widget class Python files for additional documentation.
 
 #### Widget
-Generic Widget class to display a white screen and supporting functions.
+Generic Widget class to display a white screen and supporting functions. This class contains some general LED matrix and graphics parameters, including the pixel dimensions of the matrix and fonts.
 
-TODO: Add more here.
+Each widget inherits from this Widget class. Accordingly, each Widget must have the following functions:
+- setup(self): sets up any required APIs and initializes some class variables
+- update(self, action_state): updates and returns a new screen image (as a PIL Image object); the action_state parameter is an integer in [0, 1, 2, 3] to indicate the number of times that the action button has been pressed (i.e., no press, single press, double press, triple press); this update function can include a set of conditions to handle this user input.
 
 #### Clock Widget
 ClockWidget class to display the current time and date. Inherits Widget.
