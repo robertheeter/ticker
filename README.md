@@ -107,7 +107,7 @@ Restart the PocketBeagle before the first run to ensure the PRU changes have bee
 2. `sudo python3 ticker.py` to run `ticker.py`. The password for Debian is likely `temppwd`.
 
 ### ***Widgets***
-See the widget class Python files in the [**ticker**](https://github.com/rcheeter/ticker/tree/main/ticker) folder in this repository for more detailed documentation. All of the provided widgets rely on the ['Pillow'](https://pillow.readthedocs.io/en/stable/) library to create and display 64x32 pixel images to the LED matrix.
+See the widget class Python files in the [**ticker**](https://github.com/rcheeter/ticker/tree/main/ticker) folder in this repository for more detailed documentation. All of the provided widgets rely on the [`Pillow`](https://pillow.readthedocs.io/en/stable/) library to create and display 64x32 pixel images to the LED matrix.
 
 #### [Widget](https://github.com/rcheeter/ticker/blob/main/ticker/widget.py)
 Generic Widget class to display a white screen and supporting functions. Contains some general LED matrix and graphics parameters, including the pixel dimensions of the matrix and fonts.
