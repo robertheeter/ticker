@@ -1,7 +1,8 @@
 """
 ABOUT:
     
-    This script sets up access and permissions for Spotify's API using Spotipy and should be run on a Mac or Windows computer (i.e., via Visual Studio Code, NOT on the PocketBeagle Cloud9). See documentation at https://github.com/rcheeter/ticker for setting up this widget.
+    This script sets up access and permissions for Spotify's API using Spotipy and should be run on a Mac or Windows computer (i.e., via Visual Studio Code, NOT on the PocketBeagle Cloud9).
+    See documentation at https://github.com/rcheeter/ticker for setting up this widget.
     
 LICENSE:
     
