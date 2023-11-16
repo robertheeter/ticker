@@ -86,7 +86,7 @@ For more specific information about this setup process, view the [beagleboard.or
     13. `^C`, "ctrl+C" to quit checking the internet connection.
     14. When the PocketBeagle (and by extension the WiFi adapter) are powered on, it will automatically attempt to connect to the same network. This process can be repeated to change networks.
 
-4. To run the TICKER application on boot, perform the following in the Cloud9 terminal. This should be done only after testing the software using the Cloud9 terminal (i.e., not on boot).
+4. To run the TICKER application on boot, perform the following in the Cloud9 terminal. **This should be done only after testing the software using the Cloud9 terminal (i.e., not on boot).**
 
     1. `cd /var/lib/cloud9` to move to the `/cloud9` directory.
     2. `mkdir logs` to make a `logs` folder.
