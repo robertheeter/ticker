@@ -147,8 +147,9 @@ To set up this widget, a Spotify account and another computer (i.e., a Mac or Wi
 - ["RGB LED Panel Driver Tutorial" article by Glen Atkins](https://bikerglen.com/projects/lighting/led-panel-1up/)
 - ["LEDscape" code via GitHub by Keith Hendrickson](https://github.com/KeithHenrickson/LEDscape)
 - ["PRU Cookbook" code via GitLab by BeagleBoard](https://git.beagleboard.org/beagleboard/pru-cookbook-code)
+- [Pillow documentation](https://pillow.readthedocs.io/en/stable/)
+- [DateTime library](https://docs.python.org/3/library/datetime.html)
+- [Adafruit CircuitPython AHTX0 library](https://github.com/adafruit/Adafruit_CircuitPython_AHTx0)
 - [Spotify Web API documentation](https://developer.spotify.com/documentation/web-api)
 - [Spotipy documentation](https://spotipy.readthedocs.io)
-- [Adafruit CircuitPython AHTX0 library](https://github.com/adafruit/Adafruit_CircuitPython_AHTx0)
-- [Pillow documentation](https://pillow.readthedocs.io/en/stable/)
 - Professor Erik Welsh and his ENGI 301 Introduction to Practical Electrical Engineering course materials
