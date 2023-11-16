@@ -3,6 +3,7 @@ ABOUT:
     
     ClockWidget class to display the current time and date.
     Not intended to be run directly.
+    See documentation at https://github.com/rcheeter/ticker for setting up this widget.
     
 LICENSE:
     
