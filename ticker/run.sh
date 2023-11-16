@@ -4,6 +4,7 @@
 
 # cd /var/lib/cloud9                  [move to cloud9 folder]
 # mkdir logs                          [make logs folder]
+# sudo chmod 777 /var/lib/cloud9/logs [modify permissions for logs folder]
 # sudo crontab -e                     [open crontab]
 # -                                   [make modifications; add this line:
 #                                         @reboot sleep 60 && sh /var/lib/cloud9/projects/ticker/run.sh > /var/lib/cloud9/logs/cronlog 2>&1
