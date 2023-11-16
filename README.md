@@ -112,23 +112,33 @@ See the widget class Python files for additional documentation.
 Generic Widget class to display a white screen and supporting functions. This class contains some general LED matrix and graphics parameters, including the pixel dimensions of the matrix and fonts.
 
 Each widget inherits from this Widget class. Accordingly, each Widget must have the following functions:
-- setup(self): sets up any required APIs and initializes some class variables
-- update(self, action_state): updates and returns a new screen image (as a PIL Image object); the action_state parameter is an integer in [0, 1, 2, 3] to indicate the number of times that the action button has been pressed (i.e., no press, single press, double press, triple press); this update function can include a set of conditions to handle this user input.
+- `setup(self)`: sets up any required APIs and initializes some class variables
+- `update(self, action_state)`: updates and returns a new screen image (as a PIL Image object); the `action_state` parameter is an integer in [0, 1, 2, 3] to indicate the number of times that the action button has been pressed (i.e., no press, single press, double press, triple press); this update function can include a set of conditions to handle this user input.
 
+Each Widget should also have the following properties:
+- `refresh_rate`: the refresh rate of the display (in Hz), implemented as a waiting period between updating the screen image
+- `verbose`: toggles the printing of detailed information from the widget to the terminal for debugging; it is recommended to set this to `False` to improve performance when running the final application.
+ 
 #### Clock Widget
-ClockWidget class to display the current time and date. Inherits Widget.
-
-TODO: Add more here.
+ClockWidget class to display the current time and date. Inherits Widget. Requires an internet connection to use the `datetime` library. Updates once per second.
 
 #### Weather Widget
-WeatherWidget class to display the current temperature and humidity. Inherits Widget.
-
-TODO: Add more here.
+WeatherWidget class to display the current temperature and humidity. Inherits Widget. Does not require an internet connection. Requires the `adafruit_ahtx0` library to use the I2C AHT10 temperature/humidity sensor. Updates once per minute.
 
 #### Spotify Widget
-SpotifyWidget class to display the currently playing track, pause/play, and skip to the next or previous track. Inherits Widget.
+SpotifyWidget class to display the currently playing track, pause/play, and skip to the next or previous track. Inherits Widget. Requires an internet connection to use the `spotipy` Spotify API library. Updates continuously.
 
-Paste the access token URL from spotify_setup.py when prompted in the Cloud9 terminal. This URL can only be used once; a new one must be regenerated using spotify_setup.py if needed
+To set up this widget, a Spotify account is required and another computer (i.e., a Mac or Windows). Perform the following:
+1. On the other computer, install Spotipy using the terminal: `pip install spotipy --upgrade`
+2. Download the [**spotify_setup.py**](https://github.com/rcheeter/ticker/blob/main/setup/spotify_setup.py) script in this repository under the **setup** folder.
+3. Create a [Spotify developer account](https://developer.spotify.com) and go to the Dashboard. This should look similar to [this screenshot](https://github.com/rcheeter/ticker/blob/main/docs/software/spotify/spotify_setup_1.png).
+4. Create a new app with a name, description, and redirect URI (recommended to use `https://localhost:8888/callback`). This should look similar to [this screenshot](https://github.com/rcheeter/ticker/blob/main/docs/software/spotify/spotify_setup_2.png) and [this other screenshot](https://github.com/rcheeter/ticker/blob/main/docs/software/spotify/spotify_setup_3.png).
+5. Navigate to the Settings > Basic Information page in the new app. This should look similar to [this screenshot](https://github.com/rcheeter/ticker/blob/main/docs/software/spotify/spotify_setup_4.png) and [this other screenshot](https://github.com/rcheeter/ticker/blob/main/docs/software/spotify/spotify_setup_5.png). Copy and save the `Client ID`, `Client Secret`, and `Redirect URI`. Never share or publish this information publicly.
+6. Open the **spotify_setup.py** script and add the `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET`, and `SPOTIFY_REDIRECT_URI` parameters from the new app.
+7. Ensure the computer is connected to the internet, and run the modified **spotify_setup.py** script (i.e., with Visual Studio Code) in a terminal. This should open a webpage on the computer's default browser for Spotify user authorization for the new app to access a particular user's Spotify data. This should look similar to [this screenshot](https://github.com/rcheeter/ticker/blob/main/docs/software/spotify/spotify_setup_6.png). This process follows the OAuth 2.0 authorization framework.
+8. The user should log in to their Spotify account and agree to the permissions. This will redirect the user to a blank page with a URL under the `SPOTIFY_REDIRECT_URI`. This should look similar to [this screenshot](https://github.com/rcheeter/ticker/blob/main/docs/software/spotify/spotify_setup_7.png). Copy the entire URL from the browser page and save it to be pasted into the PocketBeagle terminal when first running the TICKER application. **Do NOT paste the URL into the local computer terminal. This URL contains the access token required to run Spotipy for the SpotifyWidget and should NEVER be shared or published publicly.**
+9. Paste the access token URL from **spotify_setup.py** when prompted in the Cloud9 terminal when first running the TICKER application. This should look similar to [this screenshot](https://github.com/rcheeter/ticker/blob/main/docs/software/spotify/spotify_setup_8.png). This URL can only be used once; a new URL must be regenerated using spotify_setup.py if needed. If the URL is pasted into the terminal, the access token will be saved in a `.cache` file in the current directory so the user does not need to repeatedly provide a new access token.
+10. A user can rescind authorization for TICKER to access their data from their Spotify account settings page.
 
 TODO: Add more here.
 
