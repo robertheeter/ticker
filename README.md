@@ -90,12 +90,13 @@ For more specific information about this setup process, view the [beagleboard.or
 
     1. `cd /var/lib/cloud9` to move to the `/cloud9` directory.
     2. `mkdir logs` to make a `logs` folder.
-    3. `sudo crontab -e` to open crontab. The password for debian is likely `temppwd`.
-    4. Make modifications; add this line: `@reboot sleep 60 && sh /var/lib/cloud9/projects/ticker/run.sh > /var/lib/cloud9/logs/cronlog 2>&1`. This should be the only non-comment line in the crontab file.
-    5. `^X`, "ctrl+X" to exit the editor.
-    6. `Y`, "Y" to save the modified buffer.
-    7. "enter" to confirm the file name.
-    8. Shut off and restart the PocketBeagle using the power button to set the cron changes and test the automatic boot.
+    3. `sudo chmod 777 /var/lib/cloud9/logs` to modify permissions for the `logs` folder.
+    4. `sudo crontab -e` to open crontab. The password for debian is likely `temppwd`.
+    5. Make modifications; add this line: `@reboot sleep 60 && sh /var/lib/cloud9/projects/ticker/run.sh > /var/lib/cloud9/logs/cronlog 2>&1`. This should be the only non-comment line in the crontab file.
+    6. `^X`, "ctrl+X" to exit the editor.
+    7. `Y`, "Y" to save the modified buffer.
+    8. "enter" to confirm the file name.
+    9. Shut off and restart the PocketBeagle using the power button to set the cron changes and test the automatic boot.
 
 ### ***Running the Application***
 Restart the PocketBeagle before the first run to ensure the PRU changes have been set. Ensure the device is connected to a 5V/4A DC power source and the power switch has been set to "on". Run the following in the Cloud9 terminal:
@@ -120,13 +121,13 @@ Each Widget should also have the following properties:
 - `verbose`: toggles the printing of detailed information from the widget to the terminal for debugging; it is recommended to set this to `False` to improve performance when running the final application.
  
 #### Clock Widget
-ClockWidget class to display the current time and date. Inherits Widget. Requires an internet connection to use the `datetime` library. Updates once per second.
+ClockWidget class to display the current time and date. Inherits Widget. Requires an internet connection to use the `datetime` library. Updates once per second. Does not accept any user input. Use the `timeshift` parameter to specify the time zone shift in hours from UTC. Use the `units` parameter to specify whether to use a 12- or 24-hour clock.
 
 #### Weather Widget
-WeatherWidget class to display the current temperature and humidity. Inherits Widget. Does not require an internet connection. Requires the `adafruit_ahtx0` library to use the I2C AHT10 temperature/humidity sensor. Updates once per minute.
+WeatherWidget class to display the current temperature and humidity. Inherits Widget. Does not require an internet connection. Requires the `adafruit_ahtx0` library to use the I2C AHT10 temperature/humidity sensor. Updates once per minute. Does not accept any user input. Use the `units` parameter to specify the temperature units.
 
 #### Spotify Widget
-SpotifyWidget class to display the currently playing track, pause/play, and skip to the next or previous track. Inherits Widget. Requires an internet connection to use the `spotipy` Spotify API library. Updates continuously.
+SpotifyWidget class to display the currently playing track, pause/play, and skip to the next or previous track. Inherits Widget. Requires an internet connection to use the `spotipy` Spotify API library. Updates continuously. Use the `interval` parameter to specify how smoothly the display text scrolls.
 
 To set up this widget, a Spotify account is required and another computer (i.e., a Mac or Windows). Perform the following:
 1. On the other computer, install Spotipy using the terminal: `pip install spotipy --upgrade`
@@ -136,11 +137,10 @@ To set up this widget, a Spotify account is required and another computer (i.e.,
 5. Navigate to the Settings > Basic Information page in the new app. This should look similar to [this screenshot](https://github.com/rcheeter/ticker/blob/main/docs/software/spotify/spotify_setup_4.png) and [this other screenshot](https://github.com/rcheeter/ticker/blob/main/docs/software/spotify/spotify_setup_5.png). Copy and save the `Client ID`, `Client Secret`, and `Redirect URI`. Never share or publish this information publicly.
 6. Open the **spotify_setup.py** script and add the `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET`, and `SPOTIFY_REDIRECT_URI` parameters from the new app.
 7. Ensure the computer is connected to the internet, and run the modified **spotify_setup.py** script (i.e., with Visual Studio Code) in a terminal. This should open a webpage on the computer's default browser for Spotify user authorization for the new app to access a particular user's Spotify data. This should look similar to [this screenshot](https://github.com/rcheeter/ticker/blob/main/docs/software/spotify/spotify_setup_6.png). This process follows the OAuth 2.0 authorization framework.
-8. The user should log in to their Spotify account and agree to the permissions. This will redirect the user to a blank page with a URL under the `SPOTIFY_REDIRECT_URI`. This should look similar to [this screenshot](https://github.com/rcheeter/ticker/blob/main/docs/software/spotify/spotify_setup_7.png). Copy the entire URL from the browser page and save it to be pasted into the PocketBeagle terminal when first running the TICKER application. **Do NOT paste the URL into the local computer terminal. This URL contains the access token required to run Spotipy for the SpotifyWidget and should NEVER be shared or published publicly.**
-9. Paste the access token URL from **spotify_setup.py** when prompted in the Cloud9 terminal when first running the TICKER application. This should look similar to [this screenshot](https://github.com/rcheeter/ticker/blob/main/docs/software/spotify/spotify_setup_8.png). This URL can only be used once; a new URL must be regenerated using spotify_setup.py if needed. If the URL is pasted into the terminal, the access token will be saved in a `.cache` file in the current directory so the user does not need to repeatedly provide a new access token.
-10. A user can rescind authorization for TICKER to access their data from their Spotify account settings page.
-
-TODO: Add more here.
+8. The user should log in to their Spotify account and agree to the permissions. This will redirect the user to a blank page with a URL under the `SPOTIFY_REDIRECT_URI`. This should look similar to [this screenshot](https://github.com/rcheeter/ticker/blob/main/docs/software/spotify/spotify_setup_7.png). Copy the entire URL from the browser page and save it to be pasted into the PocketBeagle Cloud9 terminal when first running the TICKER application. **Do NOT paste the URL into the local computer terminal. This URL contains the access token required to run Spotipy for the SpotifyWidget and should NEVER be shared or published publicly.**
+9. In the **ticker.py** script in Cloud9, add the `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET`, and `SPOTIFY_REDIRECT_URI` parameters from the new app where the SpotifyWidget is instantiated. Run the TICKER application as described above using the Cloud9 terminal.
+10. Paste the access token URL from **spotify_setup.py** when prompted in the Cloud9 terminal when first running the TICKER application. This should look similar to [this screenshot](https://github.com/rcheeter/ticker/blob/main/docs/software/spotify/spotify_setup_8.png). This URL can only be used once; a new URL must be regenerated using spotify_setup.py if needed. If the URL is pasted into the terminal, the access token will be saved in a `.cache` file in the current directory so the user does not need to repeatedly provide a new access token.
+11. A user can rescind authorization for TICKER to access their data from their Spotify account settings page.
 
 ## **Acknowledgements**
 - ["64x32 LED Matrix Programming" article by Big Mess 'o Wires](https://www.bigmessowires.com/2018/05/24/64-x-32-led-matrix-programming/)
