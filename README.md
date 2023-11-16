@@ -43,7 +43,7 @@ For more specific information about this setup process, view the [beagleboard.or
 2. Change the programmable realtime unit (PRU) mode in the PocketBeagle from RPROC to UIO to run the LED matrix. This can be done via the Cloud9 terminal:
 
     1. `cd /boot` to move to the `/boot` directory.
-    2. `sudo nano uEnv.txt` to edit `/boot/uEnv.txt`. The password for debian is likely `temppwd`.
+    2. `sudo nano uEnv.txt` to edit `/boot/uEnv.txt`. The password for Debian is likely `temppwd`.
     3. Make modifications; under PRU OPTIONS, *comment out* the **PRU RPROC** line and *uncomment* the **PRU UIO** line.
     4. `^X`, "ctrl+X" to exit the editor.
     5. `Y`, "Y" to save the modified buffer.
@@ -57,7 +57,7 @@ For more specific information about this setup process, view the [beagleboard.or
     **Option 1: USB connection to a Mac computer.**
         
     1. Ensure the Mac computer is connected to the PocketBeagle and that Internet Sharing is on in System Preferences > Sharing. There are numerous resources available on the internet to troubleshoot this process. Then perform the following in the Cloud9 terminal:
-    2. `sudo dhclient usb1` to connect to the internet using the Mac computer. The password for debian is likely `temppwd`.
+    2. `sudo dhclient usb1` to connect to the internet using the Mac computer. The password for Debian is likely `temppwd`.
     3. `ping google.com` to check the internet connection.
     4. `^C`, "ctrl+C" to quit checking the internet connection.
 
@@ -73,7 +73,7 @@ For more specific information about this setup process, view the [beagleboard.or
     
     1. Ensure the WiFi adapter is connected to the PocketBeagle's USB1 pins as outlined in the hardware documentation, then run the following in the Cloud9 terminal. This should look similar to [this screenshot](https://github.com/rcheeter/ticker/blob/main/docs/software/wifi/connect_wifi.png).
     2. `lsusb` to interact with the USB WiFi adapter.
-    3. `sudo connmanctl` to modify the WiFi connection. The password for debian is likely `temppwd`.
+    3. `sudo connmanctl` to modify the WiFi connection. The password for Debian is likely `temppwd`.
     4. `enable wifi` to enable WiFi.
     5. `scan wifi` to scan for available networks.
     6. `services` to view available networks and their network IDs.
@@ -91,7 +91,7 @@ For more specific information about this setup process, view the [beagleboard.or
     1. `cd /var/lib/cloud9` to move to the `/cloud9` directory.
     2. `mkdir logs` to make a `logs` folder.
     3. `sudo chmod 777 /var/lib/cloud9/logs` to modify permissions for the `logs` folder.
-    4. `sudo crontab -e` to open crontab. The password for debian is likely `temppwd`.
+    4. `sudo crontab -e` to open crontab. The password for Debian is likely `temppwd`.
     5. Make modifications; add this line: `@reboot sleep 60 && sh /var/lib/cloud9/projects/ticker/run.sh > /var/lib/cloud9/logs/cronlog 2>&1`. This should be the only non-comment line in the crontab file.
     6. `^X`, "ctrl+X" to exit the editor.
     7. `Y`, "Y" to save the modified buffer.
@@ -102,7 +102,7 @@ For more specific information about this setup process, view the [beagleboard.or
 Restart the PocketBeagle before the first run to ensure the PRU changes have been set. Ensure the device is connected to a 5V/4A DC power source and the power switch has been set to "on". Run the following in the Cloud9 terminal:
     
 1. `cd /var/lib/cloud9/projects/ticker` to move to the `/ticker` directory.
-2. `sudo python3 ticker.py` to run `ticker.py`. The password for debian is likely `temppwd`.
+2. `sudo python3 ticker.py` to run `ticker.py`. The password for Debian is likely `temppwd`.
                                         
 On the first run, the SpotifyWidget will likely require an access token URL to be pasted into the Cloud9 terminal to run the application. See the SpotifyWidget section below for more information on how to do this.
 
