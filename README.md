@@ -109,25 +109,25 @@ Restart the PocketBeagle before the first run to ensure the PRU changes have bee
 ### ***Widgets***
 See the widget class Python files in the [**ticker**](https://github.com/rcheeter/ticker/tree/main/ticker) folder in this repository for more detailed documentation.
 
-#### Widget
-Generic Widget class to display a white screen and supporting functions. This class contains some general LED matrix and graphics parameters, including the pixel dimensions of the matrix and fonts.
+#### [Widget](https://github.com/rcheeter/ticker/blob/main/ticker/widget.py)
+Generic Widget class to display a white screen and supporting functions. Contains some general LED matrix and graphics parameters, including the pixel dimensions of the matrix and fonts.
 
 Each widget inherits from this Widget class. Accordingly, each Widget must have the following functions:
-- `setup(self)`: sets up any required APIs and initializes some class variables
+- `setup(self)`: sets up any required APIs and initializes some class variables.
 - `update(self, action_state)`: updates and returns a new screen image (as a PIL Image object); the `action_state` parameter is an integer in [0, 1, 2, 3] to indicate the number of times that the action button has been pressed (i.e., no press, single press, double press, triple press); this update function can include a set of conditions to handle this user input.
 
 Each Widget should also have the following properties:
-- `refresh_rate`: the refresh rate of the display (in Hz), implemented as a waiting period between updating the screen image
+- `refresh_rate`: the refresh rate of the display (in Hz), implemented as a wait in `Widget.update()`.
 - `verbose`: toggles the printing of detailed information from the widget to the terminal for debugging; it is recommended to set this to `False` to improve performance when running the final application.
  
-#### Clock Widget
-ClockWidget class to display the current time and date. Inherits Widget. Requires an internet connection to use the `datetime` library. Updates once per second. Does not accept any user input. Use the `timeshift` parameter to specify the time zone shift in hours from UTC. Use the `units` parameter to specify whether to use a 12- or 24-hour clock.
+#### [ClockWidget](https://github.com/rcheeter/ticker/blob/main/ticker/clock_widget.py)
+ClockWidget class to display the current time and date. Inherits Widget. Requires an internet connection to use the [`datetime`](https://docs.python.org/3/library/datetime.html) library. Updates once per second. Does not accept any user input. Use the `timeshift` parameter to specify the time zone shift in hours from UTC. Use the `units` parameter to specify whether to use a 12- or 24-hour clock.
 
-#### Weather Widget
-WeatherWidget class to display the current temperature and humidity. Inherits Widget. Does not require an internet connection. Requires the `adafruit_ahtx0` library to use the I2C AHT10 temperature/humidity sensor. Updates once per minute. Does not accept any user input. Use the `units` parameter to specify the temperature units.
+#### [WeatherWidget](https://github.com/rcheeter/ticker/blob/main/ticker/weather_widget.py)
+WeatherWidget class to display the current temperature and humidity. Inherits Widget. Does not require an internet connection. Requires the [`adafruit_ahtx0`](https://github.com/adafruit/Adafruit_CircuitPython_AHTx0) library to use the I2C AHT10 temperature/humidity sensor. Updates once per minute. Does not accept any user input. Use the `units` parameter to specify the temperature units.
 
-#### Spotify Widget
-SpotifyWidget class to display the currently playing track, pause/play, and skip to the next or previous track. Inherits Widget. Requires an internet connection to use the `spotipy` Spotify API library. Updates continuously. Use the `interval` parameter to specify how smoothly the display text scrolls.
+#### [SpotifyWidget](https://github.com/rcheeter/ticker/blob/main/ticker/spotify_widget.py)
+SpotifyWidget class to display the currently playing track, pause/play, and skip to the next or previous track. Inherits Widget. Requires an internet connection to use the [`spotipy`](http://spotipy.readthedocs.io) Spotify API library. Updates continuously. Use the `interval` parameter to specify how smoothly the display text scrolls.
 
 To set up this widget, a Spotify account is required and another computer (i.e., a Mac or Windows). Perform the following:
 1. On the other computer, install Spotipy using the terminal: `pip install spotipy --upgrade`
