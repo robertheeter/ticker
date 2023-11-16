@@ -3,6 +3,7 @@ ABOUT:
     
     Ticker class and main program to run the LED matrix with several interactive
     widgets.
+    See documentation at https://github.com/rcheeter/ticker.
     
 LICENSE:
     
