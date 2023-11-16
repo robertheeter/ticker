@@ -22,7 +22,7 @@ For more specific information about this setup process, view the [beagleboard.or
 
 1. The BeagleBone Debian OS was used for this project. This can be installed for the PocketBeagle by programming a microSD card using a program like [Balena Etcher](https://etcher.balena.io) with the image file `bone-debian-10.11-iot-armhf-2022-02-03-4gb.img.xz`, [downloadable from rcn-ee.com](https://rcn-ee.com/rootfs/bb.org/testing/2022-02-03/buster-iot/). This specific version was used for this project.
 
-2. After downloading the Debian OS, the microSD card can be inserted into the PocketBeagle and it can be connected to a Mac or Windows computer via a micro USB cable. Navigate to 192.168.6.2 (Mac) or 192.168.7.2 (Windows) on a web browser like Google Chrome to open Cloud9, the IDE used in this project for interacting with the PocketBeagle. For troubleshooting this process, consult see [this article by Random Nerd Tutorials](https://randomnerdtutorials.com/cloud9-ide-on-the-beaglebone-black/) or [this article by Dummies](https://www.dummies.com/article/technology/computers/hardware/beaglebone/how-to-launch-the-cloud9-ide-on-your-beaglebone-144962/) for the BeagleBoneBlack that also applies to the PocketBeagle.
+2. After downloading the Debian OS, the microSD card can be inserted into the PocketBeagle and it can be connected to a Mac or Windows computer via a micro USB cable. Navigate to 192.168.6.2 (Mac) or 192.168.7.2 (Windows) on a web browser like Google Chrome to open Cloud9, the IDE used in this project for interacting with the PocketBeagle. For troubleshooting this process, consult see [this article by Random Nerd Tutorials](https://randomnerdtutorials.com/cloud9-ide-on-the-beaglebone-black/) or [this article by Dummies](https://www.dummies.com/article/technology/computers/hardware/beaglebone/how-to-launch-the-cloud9-ide-on-your-beaglebone-144962/) for the BeagleBoneBlack (which also applies for the PocketBeagle).
 
 3. Open a new terminal and install the following packages and Python libraries for this project:
 
@@ -65,7 +65,7 @@ For more specific information about this setup process, view the [beagleboard.or
 
     1. Ensure the Windows computer is connected to the PocketBeagle. There are numerous resources available on the internet to troubleshoot this process. Then perform the following in the Cloud9 terminal:
     2. `/sbin/route add default gw 192.168.7.1`
-    3. `echo "nameserver 8.8.8.8" >> /etc/resolv.conf`
+    3. `echo "nameserver 8.8.8.8" >> /etc/resolv.conf` to connect to the internet using the Windows computer.
     4. `ping google.com` to check the internet connection.
     5. `^C`, "ctrl+C" to quit checking the internet connection.
 
@@ -85,27 +85,27 @@ For more specific information about this setup process, view the [beagleboard.or
     12. `ping google.com` to check the internet connection.
     13. `^C`, "ctrl+C" to quit checking the internet connection.
 
-4. To run the Ticker application on boot, perform the following in the Cloud9 terminal. This should be done only after testing the software manually (i.e., not on boot).
+4. To run the Ticker application on boot, perform the following in the Cloud9 terminal. This should be done only after testing the software using the Cloud9 terminal (i.e., not on boot).
 
     1. `cd /var/lib/cloud9` to move to the `/cloud9` directory.
     2. `mkdir logs` to make a `logs` folder.
     3. `sudo crontab -e` to open crontab. The password for debian is likely `temppwd`.
-    4. Make modifications; add this line: `@reboot sleep 60 && sh /var/lib/cloud9/projects/ticker/ticker_automatic.sh > /var/lib/cloud9/logs/cronlog 2>&1`. This should be the only non-comment line in the crontab file.
+    4. Make modifications; add this line: `@reboot sleep 60 && sh /var/lib/cloud9/projects/ticker/run.sh > /var/lib/cloud9/logs/cronlog 2>&1`. This should be the only non-comment line in the crontab file.
     5. `^X`, "ctrl+X" to exit the editor.
     6. `Y`, "Y" to save the modified buffer.
     7. "enter" to confirm the file name.
     8. Shut off and restart the PocketBeagle using the power button to set the cron changes.
 
 ### ***Running the Application***
-Restart the PocketBeagle before first run to ensure PRU changes have been set. Ensure the device is connected to a 5V/4A DC power source and the power switch has been set to "on". Run the following in the Cloud9 terminal:
+Restart the PocketBeagle before the first run to ensure the PRU changes have been set. Ensure the device is connected to a 5V/4A DC power source and the power switch has been set to "on". Run the following in the Cloud9 terminal:
     
 1. `cd /var/lib/cloud9/projects/ticker` to move to the `/ticker` directory.
 2. `sudo python3 ticker.py` to run `ticker.py`. The password for debian is likely `temppwd`.
                                         
-On first run, the SpotifyWidget will likely require an access token URL to be pasted into the Cloud9 terminal to run the application. See the SpotifyWidget section below for more information on how to do this.
+On the first run, the SpotifyWidget will likely require an access token URL to be pasted into the Cloud9 terminal to run the application. See the SpotifyWidget section below for more information on how to do this.
 
 ### ***Widgets***
-See widget class files for additional documentation.
+See the widget class Python files for additional documentation.
 
 #### Widget
 Generic Widget class to display a white screen and supporting functions.
@@ -113,17 +113,17 @@ Generic Widget class to display a white screen and supporting functions.
 TODO: Add more here.
 
 #### Clock Widget
-ClockWidget class to display the current time and date.
+ClockWidget class to display the current time and date. Inherits Widget.
 
 TODO: Add more here.
 
 #### Weather Widget
-WeatherWidget class to display the current temperature and humidity.
+WeatherWidget class to display the current temperature and humidity. Inherits Widget.
 
 TODO: Add more here.
 
 #### Spotify Widget
-SpotifyWidget class to display the currently playing track, pause/play, and skip to the next or previous track.
+SpotifyWidget class to display the currently playing track, pause/play, and skip to the next or previous track. Inherits Widget.
 
 Paste the access token URL from spotify_setup.py when prompted in the Cloud9 terminal. This URL can only be used once; a new one must be regenerated using spotify_setup.py if needed
 
