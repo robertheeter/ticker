@@ -3,6 +3,7 @@ ABOUT:
     
     Generic Widget class to display a white screen and supporting functions.
     Not intended to be run directly.
+    See documentation at https://github.com/rcheeter/ticker for setting up this widget.
     
 LICENSE:
     
